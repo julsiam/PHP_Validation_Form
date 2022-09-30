@@ -1,27 +1,39 @@
-
-<!-- This is using the javascript validation on valid.js file  -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Validated Login Form</title>
-    <!-- <link rel="stylesheet" href="reg.css"> -->
+    <link rel="stylesheet" href="reg.css">
 </head>
 
 <body>
-<?php
-   //include CSS Style Sheet
-   echo "<link rel='stylesheet' type='text/css' href='reg.css' />";
-?>
+
+    <?php
+    $msg = "";
+    if (isset($_POST['password'])) {
+        $Cpassword = $_POST['Cpassword'];
+        $password = $_POST['password'];
+        $number = preg_match('@[0-9]@', $password);
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
+
+        if (strlen($password) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars) {
+            $msg = "Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.";
+        } elseif ($password != $Cpassword) {
+            $msg = "Password doesn't match";
+        } else {
+            return true;
+        }
+    }
+
+    ?>
     <div class="form">
         <div class="tab-content">
             <div id="signup">
                 <h1><span style="color:#314964">| <b> AYUDA</b> </span>Registration Form</h1>
-
-                <form action="home.php" method="POST" onsubmit="return validateRegForm()">
-
+                <form action="home.php" method="POST">
                     <div class="top-row">
                         <div class="field-wrap">
                             <label>
@@ -55,32 +67,29 @@
 
                     <div class="field-wrap">
                         <label>
-                            Password<span class="req">*</span>
-                        </label>
-                        <input name="password" type="password" id="pswd1" value="" required autocomplete="off" />
-
+                            Password<span class="req">*</span></label>
+                        <input type="password" name="password" required />
+                        <span id="password" style="color:red; font-size:12px;margin-left: 15px; padding: 10px"><?php echo $msg ?></span>
                     </div>
 
                     <div class="field-wrap">
-                        <label>
-                            Confirm Password<span class="req">*</span>
-                        </label>
-                        <input name="Cpassword" type="password" id="pswd2" value="" required autocomplete="off" />
-                        <span style="color:red; margin-left: 15px" id="errorConfirmPass"> </span> <br>
-
+                        <label for="">ConfirmPassword<span class="req">*</span></label>
+                        <input id="Cpassword" type="password" name="Cpassword" required />
                     </div>
 
                     <button type="submit" class="button button-block" name="submit">Sign Up</button>
 
 
-                </form>
-            </div>
+                    <!-- <form action="home.php" method="POST">
+                        <button type="submit" class="button button-block" name="submit"></button>
+                    </form> -->
 
+                    <!-- <input type="submit" value="Check" /><br /> -->
+                </form>
+
+            </div>
         </div>
     </div>
-
-    </script>
-    <script src="valid.js"></script>
 </body>
 
 </html>

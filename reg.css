@@ -68,6 +68,7 @@ textarea {
 	display: block;
 	color: #000000;
 	width: 100%;
+	outline: none;
 	height: 100%;
 	padding: 8px 10px;
 	border: 1px solid #a09c93;
@@ -75,14 +76,12 @@ textarea {
 	transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-
-/* #charMessage, 
-#charMessage2, */
 #errorPass,
 #errorConfirmPass{
 	color:red; 
 	margin-left: 15px
 }
+
 
 .field-wrap {
 	position: relative;

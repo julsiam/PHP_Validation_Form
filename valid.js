@@ -20,6 +20,14 @@ function validateRegForm() {
 		return false;
 
 	}
+
+	if (pw1 <8) {
+		document.getElementById("errorConfirmPass").innerHTML = "Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.";
+		return false;
+
+	}else{
+		return true;
+	}
 }
 
 
