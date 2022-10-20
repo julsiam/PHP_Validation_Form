@@ -10,8 +10,6 @@
 </head>
 
 <body>
-
-
     <div class="form">
         <div class="tab-content">
             <div id="signin">
@@ -45,8 +43,6 @@
         </div>
 
     </div>
-
-
 </body>
 
 </html>
